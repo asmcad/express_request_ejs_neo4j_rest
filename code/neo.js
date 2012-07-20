@@ -20,29 +20,33 @@ exports.index = function(req, resp){
 
 	//' http://localhost:7474/db/data/cypher {   "query" : "start x  = node(17) return x" }'
 
+	//this is for cypher language
+		// url: 'http://localhost:7474/db/data/cypher',
+		// body: JSON.stringify({   "query" : "start x  = node(17) return x" })
+		//obj.data[0][0].data.name 
 	
-		request({
-		  url: 'http://localhost:7474/db/data/cypher',
-		 
-		  method: 'POST',
-		  body: JSON.stringify({   "query" : "start x  = node(17) return x" })
-		}, function (err, res, body) {
-		  
-				//console.log(body);
+	
+		request(
+			{//it uses Gremlin language
+			  url: 'http://localhost:7474/db/data/ext/GremlinPlugin/graphdb/execute_script',
+			  method: 'POST',
+			  body: JSON.stringify(	{"script":"g.v(17).lastModified"}	)
+			}, 
+			function (err, res, body) 
+			{
+			  
+					
 
-		  if (!err && res.statusCode == 200) 
-		  {
-		  
-			var obj = JSON.parse(body);
-
-			console.log( obj.data[0][0].data.name);
-			//console.log(body);
-			
-			
-			resp.render('neo/index', {  title: obj.data[0][0].data.name  });
-			
-		  }
-		});
+			    if (!err && res.statusCode == 200) 
+			    {
+			    
+				  var obj = JSON.parse(body);
+                
+				  resp.render('neo/index', {  title: "merhaba "+ body });
+				  
+			    }
+			}
+		);
 	
   
   
