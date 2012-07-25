@@ -1,6 +1,45 @@
-﻿<form method="post" action="create_user_post">
-    <p> <input type="text" value=""   name="username"> : username</p>
+﻿<html>
+<head>
+
+<style>
+
+h1,h2,h3, h4,h5,h6
+{
+margin:0px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<h3> create user </h3>
+<h4> -- type 	  : user </h4>
+<h4> -- name 	  : user name </h4>
+<h4> -- password  : user password </h4>
+
+
+	
+	<% if(result!="DONE!") {  %>
+	
+	
+	
+	<form method="post" action="create_user_post">
+    <p> <input type="text" value=""   name="username"> : name</p>
     <p>  <input type="text" value="" name="password"> : password</p>
     <p><input type="submit" value="Save"></p>
-	<h3> <%= result %></h3>
-</form>
+	
+	</form>
+	
+	<% }  %>
+	
+	<h3> 
+	<%= result %>
+	</h3>
+
+
+</body>
+
+</html>

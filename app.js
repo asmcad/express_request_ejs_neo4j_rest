@@ -8,7 +8,7 @@ var express = require('express')
 
   
 
-  
+
   
   
   
@@ -24,6 +24,10 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  
+  
+  app.use(function(err, req, res, next) {   res.redirect("/"); console.log("hata: "+err)  });
+  
 });
 
 app.configure('development', function(){
@@ -60,9 +64,7 @@ app.get('/posts', post.list);
 
 app.get('/neo', neo.index);
 app.get('/create_user', neo.create_user_get_exp);
-app.post('/create_user_post', neo.create_user_post_exp);
-
-
+app.all('/create_user_post', neo.create_user_post_exp);
 
 
 

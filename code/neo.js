@@ -56,26 +56,28 @@ exports.index = function(req, resp){
 };
 
 
-exports.create_user_get_exp = function(req, res){
-
-  res.render('neo/create_user_view', {  result: 'dfgd'  });
-
-};
 
 
+
+
+
+		exports.create_user_get_exp = function(req, res){
+
+		  res.render('neo/create_user_view', {  result: ''  });
+		};
 
 
 exports.create_user_post_exp = function(req, res){
+	
 
-	if(req.body.username == "" || req.body.password == "" )
+	if(req.body.username != null && req.body.password != null)
 	{
-	  res.render('neo/create_user_view', {  result: 'please fill the form completely'  });
+	   
+	   res.render('neo/create_user_view', {  result: 'DONE!'  });
 	}
 	else
-	{
-		console.log(req.body.username);
-		console.log(req.body.password);
-		res.end("hey "+req.body.username + "!");
+	{	
+		res.render('neo/create_user_view', {  result: 'please fill the form completely'  });
 	}
 	
 
